@@ -3,16 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-// use Storage;
 use Illuminate\Support\Facades\DB;
 
 class PageController extends Controller {
     public function index () {
-        $data = Storage::get('sampledata.json');
-        $data = json_decode($data, true);
-
-        // return view('pages.index', compact('title'));
-        return view('pages.index')->with('data', $data);
+        return view('pages.index');
     }
 
     public function services() {
