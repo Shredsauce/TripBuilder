@@ -12,6 +12,7 @@
 */
 
 Route::get('/', 'PageController@index');
+Route::get('/services', 'PageController@services');
 
 // Route::get('/', function () {
 //     return view('home');
