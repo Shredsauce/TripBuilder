@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class PageController extends Controller {
     public function index () {
-    	$title = "Trip Builder!";
+    	$title = "Trip Builder";
 
         // return view('pages.index', compact('title'));
         return view('pages.index')->with('title', $title);
