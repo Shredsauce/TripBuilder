@@ -1,11 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-	<h1>{{$title}}</h1>
-	@if(count($services) > 0)
+	<h1>{{config('app.name', 'Trip Builder')}}</h1>
+
+	@if(count($flights) > 0)
 		<ul class="list-group">
-			@foreach($services as $service)
-				<li class="list-group-item">{{$service}}</li>
+			@foreach($flights as $flight)
+				<li class="list-group-item">{{$flight->airline}}</li>
 			@endforeach
 		</ul>
 	@endif
