@@ -8,7 +8,6 @@
 		<p>Build a trip</p>
 
 		<a href="{{ url('/services/') }}" class="btn btn-xs btn-info pull-right">Sort</a>
-		<a href="{{ url('/services/') }}" class="btn btn-xs btn-info pull-right">Sort</a>
 
 {{-- 		@if(count($data['flights']) > 0)
 			<ul class="list-group">
@@ -26,28 +25,7 @@
 				@endforeach
 			</ul>
 		@endif
- --}}
-
-		@if(count($flights) > 0)
-			<ul class="list-group">
-				@foreach($flights as $flight)
-					<li class="list-group-item">
-						<div class="row">
-							${{$flight->price}}
-						</div>
-						<ol>
-							Departure: {{$flight->departure_airport->city}} ({{$flight->departure_airport->code}})
-							at {{$flight->departure_time}}
-						</ol>
-						<ol>
-							Arrival: {{$flight->departure_airport->city}} ({{$flight->departure_airport->code}})
-							at {{$flight->arrival_time}}
-						</ol>						
-					</li>
-				@endforeach
-			</ul>
-		@endif
-
+ --}}	
 
 		{{-- Calendar --}}
 		<div class="row">

@@ -12,23 +12,23 @@
 */
 
 Route::get('/', 'PageController@index');
-Route::get('/flights', 'PageController@flights');
+
+Route::get('flights/{departure_airport?}', 'PageController@flights');
+
+// Route::get('/flights', 'PageController@flights');
 
 // Route::get('flights/', [
 //     'uses' => 'TripController@getFlights'
 // ]);
 
-Route::get('airports/', [
-    'uses' => 'TripController@getAirports'
-]);
+// Route::get('airports/', [
+//     'uses' => 'TripController@getAirports'
+// ]);
 
-Route::get('airlines/', [
-    'uses' => 'TripController@getAirlines'
-]);
+// Route::get('airlines/', [
+//     'uses' => 'TripController@getAirlines'
+// ]);
 
-Route::get('cityname', function () {
-    return "city name is Montreal";
-});
 
 // Route::get('flights/{id}', [
 //     'uses' => 'TripController@getFlights'
