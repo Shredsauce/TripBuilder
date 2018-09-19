@@ -8,7 +8,9 @@ use Illuminate\Support\Facades\DB;
 class PageController extends Controller {
 
     public function index () {
-        return view ('pages.index'); 
+        $airports = DB::table('airports')->get();
+
+        return view ('pages.index')->with('airports', $airports); 
     }
 
     public function flights ($departure_airport = null, $arrival_airport = null, $page = null) {

@@ -6,25 +6,24 @@
 	<div class="jumbotron text-center">
 		<h1>{{config('app.name', 'Trip Builder')}}</h1>
 		<p>Build a trip</p>
-
-		@php
-		$departure_airport = "any_departure_airport";
-        $arrival_airport = "any_arrival_airport";
-		@endphp
-
+		
 		<div class="form-group">
 		<label for="departureAirportSelect">Departure airport</label>
 		<select class="form-control" id="departureAirportSelect">
-			<option>YUL</option>
-			<option>YVR</option>
+			<option value="any_departure_airport">Any airport</option>
+			@foreach($airports as $airport)
+				<option value="{{$airport->code}}">{{$airport->name}} ({{$airport->code}})</option>
+			@endforeach
 		</select>
 		</div>
 
 		<div class="form-group">
 		<label for="arrivalAirportSelect">Arrival airport</label>
 		<select class="form-control" id="arrivalAirportSelect">
-			<option>YUL</option>
-			<option>YVR</option>
+			<option value="any_arrival_airport">Any airport</option>
+			@foreach($airports as $airport)
+				<option value="{{$airport->code}}">{{$airport->name}} ({{$airport->code}})</option>
+			@endforeach
 		</select>
 		</div>		
 
