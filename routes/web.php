@@ -12,8 +12,36 @@
 */
 
 Route::get('/', 'PageController@index');
-Route::get('/services', 'PageController@services');
+Route::get('/flights', 'PageController@flights');
 
+// Route::get('flights/', [
+//     'uses' => 'TripController@getFlights'
+// ]);
+
+Route::get('airports/', [
+    'uses' => 'TripController@getAirports'
+]);
+
+Route::get('airlines/', [
+    'uses' => 'TripController@getAirlines'
+]);
+
+Route::get('cityname', function () {
+    return "city name is Montreal";
+});
+
+// Route::get('flights/{id}', [
+//     'uses' => 'TripController@getFlights'
+// ]);
+
+// Route::get('flights/{id}', function ($id) {
+//     return 'FLIGHT '.$id;
+// });
+
+
+// Route::get('flights', 'PageController@flights2');
+
+// Route::resource('flights', 'TripController');
 
 
 // Route::get('/', function () {
