@@ -1,7 +1,11 @@
 <?php
 
 return [
+    
+    'any_arrival_airport' => 'any_arrival_airport',
+    'any_departure_airport' => 'any_departure_airport',
 
+    
     /*
     |--------------------------------------------------------------------------
     | Application Name

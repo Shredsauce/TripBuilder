@@ -9,7 +9,6 @@
 
 		<a href="{{ url('/services/') }}" class="btn btn-xs btn-info pull-right">Sort</a>
 
-
 		@if(count($flights) > 0)
 			<ul class="list-group">
 				@foreach($flights as $flight)
@@ -26,7 +25,7 @@
 							at {{$flight->departure_time}}
 						</ol>
 						<ol>
-							Arrival: {{$flight->departure_airport->city}} ({{$flight->departure_airport->code}})
+							Arrival: {{$flight->arrival_airport->city}} ({{$flight->arrival_airport->code}})
 							at {{$flight->arrival_time}}
 						</ol>						
 					</li>
@@ -36,6 +35,7 @@
 		Could not find any flights for your search criteria
 		@endif
 
+		{{-- page: {{$pagination->page}} --}}
 
 
 	</div>

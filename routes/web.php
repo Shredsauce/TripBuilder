@@ -13,7 +13,7 @@
 
 Route::get('/', 'PageController@index');
 
-Route::get('flights/{departure_airport?}', 'PageController@flights');
+Route::get('flights/{departure_airport}/{arrival_airport}', 'PageController@flights');
 
 // Route::get('/flights', 'PageController@flights');
 

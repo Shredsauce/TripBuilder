@@ -11,11 +11,22 @@ class PageController extends Controller {
         return view ('pages.index'); 
     }
 
-    public function flights ($departure_airport = null) {
-        if ($departure_airport != null)
-            $flights = DB::table('flights')->where('departure_airport', '=', $departure_airport)->get();
-        else
-            $flights = DB::table('flights')->get();
+    public function flights ($departure_airport = null, $arrival_airport = null, $page = null) {
+        if ($departure_airport == "any_departure_airport") {
+            $departure_airport = null;
+        }
+        if ($arrival_airport == "any_arrival_airport") {
+            $arrival_airport = null;
+        }
+
+        $flights = DB::table('flights')
+            ->when($departure_airport, function ($query, $departure_airport) {
+                return $query->where('departure_airport', '=', $departure_airport);
+            })
+            ->when($arrival_airport, function ($query, $arrival_airport) {
+                return $query->where('arrival_airport', '=', $arrival_airport);
+            })            
+           ->paginate(10);
 
         // Fetch the full airport and airline data for each flight
         foreach ($flights as $flight) {
@@ -23,8 +34,12 @@ class PageController extends Controller {
             $flight->departure_airport = DB::table('airports')->where('code', '=', $flight->departure_airport)->first();
             $flight->arrival_airport = DB::table('airports')->where('code', '=', $flight->arrival_airport)->first();
         }
+        $pagination = array(
+            'page'  => $page
+        );
 
-        return view ('pages.flights')->with('flights', $flights); 
+
+        return view ('pages.flights')->with('flights', $flights)->with('pagination', $pagination); 
     }
 
     // // Get flight information from sqlite database
