@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\TripClasses\Trip;
 
 class PageController extends Controller {
 
@@ -36,8 +37,11 @@ class PageController extends Controller {
             $flight->departure_airport = DB::table('airports')->where('code', '=', $flight->departure_airport)->first();
             $flight->arrival_airport = DB::table('airports')->where('code', '=', $flight->arrival_airport)->first();
         }
+
+        $trip = new Trip();
+
         $pagination = array(
-            'page'  => $page
+            'page'  => $trip->Test()
         );
 
 

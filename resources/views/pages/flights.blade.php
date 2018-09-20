@@ -8,7 +8,7 @@
 		<p>Build a trip</p>
 
 		<a href="{{ url('/services/') }}" class="btn btn-xs btn-info pull-right">Sort</a>
-
+		
 		@if(count($flights) > 0)
 			<ul class="list-group">
 				@foreach($flights as $flight)
@@ -35,7 +35,7 @@
 		Could not find any flights for your search criteria
 		@endif
 
-		{{-- page: {{$pagination->page}} --}}
+		page: {{$pagination['page']}}
 
 
 	</div>
