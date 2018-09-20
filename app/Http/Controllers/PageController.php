@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\DB;
 use App\TripClasses\Trip;
 
 class PageController extends Controller {
-
     public function index () {
         $airports = DB::table('airports')->get();
 
@@ -15,6 +14,13 @@ class PageController extends Controller {
     }
 
     public function flights ($departure_airport = null, $arrival_airport = null, $page = null) {
+
+
+
+
+
+
+        /*
         if ($departure_airport == "any_departure_airport") {
             $departure_airport = null;
         }
@@ -41,11 +47,12 @@ class PageController extends Controller {
         $trip = new Trip();
 
         $pagination = array(
-            'page'  => $trip->Test()
+            // 'page'  => $trip->test()
+            'page'  => $trip->getUtcTime($flight->departure_time, $flight->departure_airport->timezone)
         );
 
-
-        return view ('pages.flights')->with('flights', $flights)->with('pagination', $pagination); 
+        return view ('pages.flights')->with('flights', $flights)->with('pagination', $pagination);
+        */
     }
 
     // // Get flight information from sqlite database
