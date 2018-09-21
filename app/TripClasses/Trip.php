@@ -2,6 +2,8 @@
 
 namespace App\TripClasses;
 
+use Illuminate\Support\Facades\DB;
+
 class Trip {
     private $flights = array();
 
@@ -23,9 +25,5 @@ class Trip {
             $totalPrice += $this->flights[$i]->price;
         }
         return number_format($totalPrice,2);
-    }
-
-    public static function getUtcTime ($time, $timezone) {
-        return $time;
     }
 }

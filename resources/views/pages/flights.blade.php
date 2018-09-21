@@ -9,7 +9,7 @@ use App\TripClasses\Trip;
 	<div class="jumbotron text-center">
 		<h1>{{config('app.name', 'Trip Builder')}}</h1>
 		<p>Build a trip</p>
-		
+	
 		@if(count($trip->getFlights()) > 0)
 			<div class="well">
 				@foreach($trip->getFlights() as $flight)
@@ -20,7 +20,7 @@ use App\TripClasses\Trip;
 						</div>
 						<div>
 							Arrival: {{$flight->arrival_airport->city}} ({{$flight->arrival_airport->code}})
-							at {{$flight->arrival_time}}
+							at {{$flight->arrival_time}} {{$flight->timezone}}
 							on {{$flight->date}}
 						</div>						
 					</div>					
@@ -33,9 +33,5 @@ use App\TripClasses\Trip;
 		@else
 		Could not find any flights for your search criteria
 		@endif
-
-		{{-- page: {{$pagination['page']}} --}}
-
-
 	</div>
 @endsection

@@ -143,7 +143,7 @@
 		if (filledFields) {
 			var json = {flights: flights};
 
-			url += "?data="+encodeURI(JSON.stringify(json));
+			url += "?data="+encodeURI(JSON.stringify(json))+"&timezone=EST";
 
 			window.location.href = url;
 		}

@@ -9,21 +9,16 @@ use App\TripClasses\Trip;
 class PageController extends Controller {
     public function index () {
         $airports = DB::table('airports')->get();
-
         return view ('pages.index')->with('airports', $airports); 
     }
 
-/*
-    public function flights (
-        $depart_A = null, $arriv_B = null, $depart_C = null, $arriv_D = null, $depart_E = null, $arriv_F = null, $depart_G = null, $arriv_H = null, $depart_I = null, $arriv_J = null,
-        Request $request, $page = null) {
-*/
     public function flights (Request $request) {
         $json = $request->input('data');
+        $timezone = $request->input('timezone');
         $flightData = json_decode($json);
 
         $trip = new Trip();
-        $allFlightsFound = TRUE;
+        $allFlightsFound = true;
 
         for ($i = 0; $i < count($flightData->flights); $i++) {
             $departure_airport = $flightData->flights[$i]->from;
@@ -45,9 +40,13 @@ class PageController extends Controller {
 
                 $flight->date = $flightData->flights[$i]->date;
 
+                $flight->departure_time = $this->getUtcTime($flight->departure_time, $timezone, $flight->departure_airport->timezone);
+
+                $flight->timezone = $timezone;
+
                 $trip->addFlight($flight);
             } else {
-                $allFlightsFound = FALSE;
+                $allFlightsFound = false;
                 break;
             }
         }
@@ -57,7 +56,15 @@ class PageController extends Controller {
             $trip->setFlights(array());
         }
 
-        // return view ('pages.flights')->with('trip', $trip)->with('test', $test);
         return view ('pages.flights')->with('trip', $trip);
-    }   
+    }
+
+    public function getUtcTime ($time, $myTimezone, $timezone) {
+        $datetime = new \DateTime($time, new \DateTimeZone($timezone));
+
+        $datetime->setTimeZone(new \DateTimeZone($myTimezone));
+
+        return $datetime->format('G:i');
+    }
+
 }
