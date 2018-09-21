@@ -9,7 +9,7 @@
         <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/docs">Documentation</a>
+        <a class="nav-link" href="https://github.com/Shredsauce/TripBuilder">Project</a>
       </li>
     </ul>
   </div>
