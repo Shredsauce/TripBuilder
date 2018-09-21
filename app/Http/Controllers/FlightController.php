@@ -8,10 +8,11 @@ use Illuminate\Support\Facades\DB;
 use App\Flight;
 
 class TripController extends Controller {
-    
-    public function index () {
-        return view('pages.index');
-    }
+        
+
+    // public function index () {
+    //     return view('pages.index');
+    // }
 
 
     // // public function getFlights($departure_location) {

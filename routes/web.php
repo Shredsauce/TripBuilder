@@ -12,6 +12,5 @@
 */
 
 Route::get('/', 'PageController@index');
-
-// Route::get('flights/{departure_airport}/{arrival_airport}', 'PageController@flights');
-Route::get('flights/{A?}/{B?}/{C?}/{D?}/{E?}/{F?}/{G?}/{H?}/{I?}/{J?}', 'PageController@flights');
+// Route::get('flights/{A?}/{B?}/{C?}/{D?}/{E?}/{F?}/{G?}/{H?}/{I?}/{J?}', 'PageController@flights');
+Route::get('flights/', 'PageController@flights');
