@@ -130,11 +130,23 @@
 			default:
 		}
 
-		var json = {flights: flights};
+		var filledFields = true;
 
-		url += "?data="+encodeURI(JSON.stringify(json));
+		for(i = 0; i < flights.length; i++) {
+			if (flights[i]['from'] == "none" || flights[i]['to'] == "none" || !flights[i]['date']) {
+				alert("Please fill in all the fields");
+				filledFields = false;
+				break;
+			}
+		}
 
-		window.location.href = url;
+		if (filledFields) {
+			var json = {flights: flights};
+
+			url += "?data="+encodeURI(JSON.stringify(json));
+
+			window.location.href = url;
+		}
 	}
 
 	function addFlight () {

@@ -6,7 +6,7 @@
   <div class="row">
     <div class="form-group col-sm-8">
       <select class="form-control departureAirportSelect">
-        <option value="any_departure_airport">Any airport</option>
+        <option value="none">Depart from</option>
         @foreach($airports as $airport)
         <option value="{{$airport->code}}">{{$airport->name}} ({{$airport->code}})</option>
         @endforeach
@@ -17,7 +17,7 @@
   <div class="row">
     <div class="form-group col-sm-8">
       <select class="form-control arrivalAirportSelect">
-        <option value="any_arrival_airport">Any airport</option>
+        <option value="none">Arrive at</option>
         @foreach($airports as $airport)
         <option value="{{$airport->code}}">{{$airport->name}} ({{$airport->code}})</option>
         @endforeach
