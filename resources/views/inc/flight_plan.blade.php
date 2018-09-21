@@ -38,14 +38,17 @@
       </div>
       <script type="text/javascript">
         $(function () {
-            $("#datetimepicker").datetimepicker();
+            $("#datetimepicker").datetimepicker({
+              format: 'DD/MM/YYYY',
+              minDate: moment()
+            });
         });
       </script>
     </div>
     {{-- Return calendar --}}
     <div id="return-calendar" class="col-sm-3">
       <div class="form-group">
-        <div class="input-group date" id="datetimepicker">
+        <div class="input-group date" id="datetimepicker2">
           <input type="text" class="form-control" />
           <span class="input-group-addon">
           <span class="glyphicon glyphicon-calendar"></span>
@@ -54,7 +57,11 @@
       </div>
       <script type="text/javascript">
         $(function () {
-            $("#datetimepicker").datetimepicker();
+            $("#datetimepicker2").datetimepicker({
+              format: 'DD/MM/YYYY'
+              // minDate: moment().add(5, 'days')
+            });
+
         });
       </script>
     </div>
