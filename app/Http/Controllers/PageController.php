@@ -22,28 +22,6 @@ class PageController extends Controller {
         $json = $request->input('data');
         $flightData = json_decode($json);
 
-        // $test = $flightData->flights[0]->to;
-
-        // $depart_A = "YUL";
-        // $arriv_B = "YYZ";
-
-        /*
-        $departures = array();
-        if ($depart_A != null) $departures[] = $depart_A;
-        // if ($depart_C != null) $departures[] = $depart_C;
-        // if ($depart_E != null) $departures[] = $depart_E;
-        // if ($depart_G != null) $departures[] = $depart_G;
-        // if ($depart_I != null) $departures[] = $depart_I;
-        
-        $arrivals = array();
-        if ($arriv_B != null) $arrivals[] = $arriv_B;
-        // if ($arriv_D != null) $arrivals[] = $arriv_D;
-        // if ($arriv_F != null) $arrivals[] = $arriv_F;
-        // if ($arriv_H != null) $arrivals[] = $arriv_H;
-        // if ($arriv_J != null) $arrivals[] = $arriv_J;
-        */
-
-        // $trip = new Trip();
         $trip = new Trip();
         $allFlightsFound = TRUE;
 
@@ -64,6 +42,8 @@ class PageController extends Controller {
                 $flight->airline = DB::table('airports')->where('code', '=', $flight->airline)->first();
                 $flight->departure_airport = DB::table('airports')->where('code', '=', $flight->departure_airport)->first();
                 $flight->arrival_airport = DB::table('airports')->where('code', '=', $flight->arrival_airport)->first();
+
+                $flight->date = $flightData->flights[$i]->date;
 
                 $trip->addFlight($flight);
             } else {

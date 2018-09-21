@@ -27,8 +27,30 @@
 	<button onclick="goToUrl()" id="searchBtn" class="btn btn-primary btn-lg" role="button">Search</button>
 </div>
 
-<script type="text/javascript">		
+<script type="text/javascript">	
 	$(document).ready(function() {
+
+		$('#return-datepicker').datetimepicker({
+        	format: 'DD/MM/YYYY',
+            useCurrent: false,
+            minDate: moment().add(1, 'days')
+        });		
+
+        $('#datepicker1').datetimepicker({
+			format: 'DD/MM/YYYY',
+			minDate: moment()
+        });
+
+        $("#datepicker1").on("dp.change", function (e) {
+        	$('#return-datepicker').data("DateTimePicker").minDate(e.date.add(1, 'days'));
+			$('#return-datepicker').data("DateTimePicker").maxDate(e.date.add(365, 'days'));	      
+        });
+        if($('#datepicker2').length) {
+	        $("#datepicker2").on("dp.change", function (e) {
+	            $('#datepicker1').data("DateTimePicker").maxDate(e.date);
+	        });
+	    }
+
 		setRoundtrip ();
 	
 	    $("#rountetrip-tab").click(function() {
@@ -45,7 +67,7 @@
 	function setRoundtrip () {
 		initFlightPlan ();
 		tripType = "roundtrip";
-	
+		
 		document.getElementById("return-calendar").style.display = "block";
 	}
 	
@@ -65,17 +87,17 @@
 	}
 	
 	function initFlightPlan () {
-		document.getElementById("return-calendar").style.display = "none";
-		document.getElementById("addFlightBtn").style.display = "none";
-		document.getElementById("removeFlightBtn").style.display = "none";
-		document.getElementById("flight-number").style.display = "none";
-	
 		var flightPlans = document.getElementsByClassName("flightplan");
 		if (flightPlans.length >= 2) {
 			for (i = 0; i < flightPlans.length; i++) {
 				removeLastFlight ();
 			}
 		}
+
+		document.getElementById("return-calendar").style.display = "none";
+		document.getElementById("addFlightBtn").style.display = "none";
+		document.getElementById("removeFlightBtn").style.display = "none";
+		document.getElementById("flight-number").style.display = "none";
 	}
 
 	function goToUrl () {
@@ -87,17 +109,22 @@
 
 		switch(tripType) {
 			case "roundtrip":
-				flights.push({from: departures[0].value, to: arrivals[0].value});
-				flights.push({from: arrivals[0].value, to: departures[0].value});
+				var leaveDate = document.getElementById('datepickerinput1').value;
+				var returnDate = document.getElementById('return-datepickerinput').value;
+
+				flights.push({from: departures[0].value, to: arrivals[0].value, date: leaveDate});
+				flights.push({from: arrivals[0].value, to: departures[0].value, date: returnDate});
 
 				break;
 			case "oneway":
-				flights.push({from: departures[0].value, to: arrivals[0].value});
+				var date = document.getElementById('datepickerinput1').value;
+				flights.push({from: departures[0].value, to: arrivals[0].value, date: date});
 		
 				break;
 			case "multicity":
 				for(i = 0; i < departures.length; i++) {
-					flights.push({from: departures[i].value, to: arrivals[i].value});
+					var date = document.getElementById('datepickerinput'+(i+1)).value;
+					flights.push({from: departures[i].value, to: arrivals[i].value, date: date});
 				}
 				break;					
 			default:
@@ -107,11 +134,9 @@
 
 		url += "?data="+encodeURI(JSON.stringify(json));
 
-		// alert(url);
-
 		window.location.href = url;
 	}
-	
+
 	function addFlight () {
 		var flightPlans = document.getElementsByClassName("flightplan");
 		var newNumber = flightPlans.length+1;
@@ -123,6 +148,17 @@
 		clone.getElementsByClassName("flightNumberLabel")[0].innerHTML = "Flight "+newNumber;
 
 		document.getElementById("removeFlightBtn").style.display = "inline";
+
+		clone.getElementsByClassName("date")[0].setAttribute("id", "datepicker"+newNumber);
+		clone.getElementsByClassName("dateinput")[0].setAttribute("id", "datepickerinput"+newNumber);
+
+
+
+		$('#datepicker'+newNumber).datetimepicker({
+			format: 'DD/MM/YYYY',
+		    useCurrent: false,
+		    minDate: moment().add(1, 'days')
+		});		
 
 		if(flightPlans.length >= 5)
 			document.getElementById("addFlightBtn").style.display = "none";     

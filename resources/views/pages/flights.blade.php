@@ -10,8 +10,6 @@ use App\TripClasses\Trip;
 		<h1>{{config('app.name', 'Trip Builder')}}</h1>
 		<p>Build a trip</p>
 		
-		{{-- {{$trip->getTotalPrice ()}} --}}
-
 		@if(count($trip->getFlights()) > 0)
 			<div class="well">
 				@foreach($trip->getFlights() as $flight)
@@ -23,6 +21,7 @@ use App\TripClasses\Trip;
 						<div>
 							Arrival: {{$flight->arrival_airport->city}} ({{$flight->arrival_airport->code}})
 							at {{$flight->arrival_time}}
+							on {{$flight->date}}
 						</div>						
 					</div>					
 

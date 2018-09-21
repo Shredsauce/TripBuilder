@@ -4,7 +4,7 @@
   </div>
   {{-- Departure --}}
   <div class="row">
-    <div class="form-group col-sm-6">
+    <div class="form-group col-sm-8">
       <select class="form-control departureAirportSelect">
         <option value="any_departure_airport">Any airport</option>
         @foreach($airports as $airport)
@@ -15,7 +15,7 @@
   </div>
   {{-- Arrival --}}
   <div class="row">
-    <div class="form-group col-sm-6">
+    <div class="form-group col-sm-8">
       <select class="form-control arrivalAirportSelect">
         <option value="any_arrival_airport">Any airport</option>
         @foreach($airports as $airport)
@@ -26,44 +26,26 @@
   </div>
 
   <div class="row">
-    {{-- Leave calendar --}}
-    <div id="leave-calendar" class="col-sm-3">
+    <div class='col-md-4'>
       <div class="form-group">
-        <div class="input-group date" id="datetimepicker">
-          <input type="text" class="form-control" />
+        <div class='input-group date' id='datepicker1'>
+          <input type='text' class="form-control dateinput" id='datepickerinput1' />
           <span class="input-group-addon">
-          <span class="glyphicon glyphicon-calendar"></span>
+            <span class="glyphicon glyphicon-calendar"></span>
           </span>
         </div>
       </div>
-      <script type="text/javascript">
-        $(function () {
-            $("#datetimepicker").datetimepicker({
-              format: 'DD/MM/YYYY',
-              minDate: moment()
-            });
-        });
-      </script>
     </div>
-    {{-- Return calendar --}}
-    <div id="return-calendar" class="col-sm-3">
+    <div id="return-calendar" class='col-md-4'>
       <div class="form-group">
-        <div class="input-group date" id="datetimepicker2">
-          <input type="text" class="form-control" />
+        <div class='input-group date datepicker' id='return-datepicker'>
+          <input type='text' class="form-control dateinput" id='return-datepickerinput' />
           <span class="input-group-addon">
-          <span class="glyphicon glyphicon-calendar"></span>
+            <span class="glyphicon glyphicon-calendar"></span>
           </span>
         </div>
       </div>
-      <script type="text/javascript">
-        $(function () {
-            $("#datetimepicker2").datetimepicker({
-              format: 'DD/MM/YYYY'
-              // minDate: moment().add(5, 'days')
-            });
-
-        });
-      </script>
     </div>
   </div>
+
 </div>
